@@ -318,7 +318,7 @@ function refreshData() {
         if (miners > 0) {
             $("#your-miners").html(miners);
             contract.methods.getAvailableEarnings(currentAddr).call().then(function (earnings) {
-                var bnbMined = readableBNB(earnings, 4)
+                var bnbMined = readableBNB(earnings, 6)
                 $("#mined").html(bnbMined);
                 //var minedUsd = Number(priceInUSD*bnbMined).toFixed(2);
                 //$('#mined-usd').html(minedUsd)
