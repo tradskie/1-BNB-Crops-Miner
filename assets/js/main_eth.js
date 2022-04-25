@@ -274,10 +274,7 @@ function refreshData() {
         var referralEggRewards = user._referralEggRewards;
         var dailyCompoundBonus = user._dailyCompoundBonus;
 	var farmerCompoundCount = user._farmerCompoundCount;
-        var withdrawCount = user._withdrawCount;
         var lastWithdrawTime = user._lastWithdrawTime;
-
-        console.log('withdraw count = ' + withdrawCount)
         console.log('last withdraw time = ' + lastWithdrawTime)
 
         var now = new Date().getTime() / 1000;
