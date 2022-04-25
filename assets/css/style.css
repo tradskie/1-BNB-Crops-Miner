@@ -563,7 +563,7 @@ h6 {
 #hero .container {
   padding-top: 55px;
   padding-bottom: 300px;
-  padding-left: 55px;
+  /*  padding-left: 55px; */
   color: #fff;
   position: relative;
   text-align: left;
