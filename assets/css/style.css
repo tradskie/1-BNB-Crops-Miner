@@ -716,8 +716,8 @@ h6 {
   border: 1px solid var(--lines);
   border-radius: 10px;
   width: auto;
-  min-width: 230px;
-  padding: 10px;
+  /*  min-width: 230px; */
+  /*  padding: 10px; */
 }
 
 #main .stats-row-container .stat {
@@ -732,7 +732,7 @@ h6 {
 .stats-row-container .header {
   font-size: 21px;
   font-weight: 300;
-  text-align: start;
+  text-align: center;
   line-height: 20px;
   transition: ease-in-out 0.3s;
   overflow-wrap: anywhere;
@@ -876,11 +876,11 @@ h6 {
 .busd {
   /* font-size: 19px; */
   color: #f3ba2c;
-  /*  margin: 0; */
-  /*  padding: 0; */
-  /*  line-height: 1; */
-  /*  font-weight: 600; */
-  /*  letter-spacing: 1px; */
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 .totals-text {
