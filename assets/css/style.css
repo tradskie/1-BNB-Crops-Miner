@@ -536,13 +536,10 @@ h6 {
 }
 
 #hero h1 {
-  margin: 0;
   padding-bottom: 5px;
   font-size: 64px;
   font-weight: 600;
   line-height: 40px;
-  color: #fff;
-  font-family: "Kanit", sans-serif;
 }
 
 #hero h2 {
@@ -552,6 +549,7 @@ h6 {
   line-height: 20px;
   padding-bottom: 5px;
   font-family: "Kanit", sans-serif;
+  margin: auto;
 }
 
 #hero h4 {
@@ -684,7 +682,7 @@ h6 {
 }
 
 #main h4 {
-  font-size: 20px;
+  font-size: 2rem;
   padding: 5px 0 5px 5px;
   display: flex;
   font-weight: 700;
@@ -876,13 +874,13 @@ h6 {
 }
 
 .busd {
-  font-size: 19px;
+  /* font-size: 19px; */
   color: #f3ba2c;
-  margin: 0;
-  padding: 0;
-  line-height: 1;
-  font-weight: 600;
-  letter-spacing: 1px;
+  /*  margin: 0; */
+  /*  padding: 0; */
+  /*  line-height: 1; */
+  /*  font-weight: 600; */
+  /*  letter-spacing: 1px; */
 }
 
 .totals-text {
