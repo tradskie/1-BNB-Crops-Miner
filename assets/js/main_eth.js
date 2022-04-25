@@ -412,8 +412,8 @@ function refreshData() {
       setTotalDeposit(userDeposit)
       setTotalWithdrawn(totalWithdrawn)
 
-      if (miners > 0) {
-        var eggsPerDay = 24 * 60 * 60 * miners
+      if (farmers > 0) {
+        var eggsPerDay = 24 * 60 * 60 * farmers
         contract.methods
           .calculateCropSellForYield(eggsPerDay, web3.utils.toWei("1"))
           .call()
