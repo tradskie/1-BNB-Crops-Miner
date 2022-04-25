@@ -334,7 +334,7 @@
                         <div>
                           <i class="ri-coins-line ri-1x"></i>
                           Daily Yield:
-                          <span id="example-bnb">0</span><span class="busd"> BNB</span>
+                          <span id="example-bnb">0</span><span class="busd">BNB</span>
                         </div>
                       </div>
                     </div>
@@ -344,7 +344,7 @@
                       <i class="bi-wallet2"></i>
                       <strong>Wallet</strong>
                       <div>
-                        <span id="user-balance">0</span><span class="busd"> BNB</span>
+                        <span id="user-balance">0</span><span class="busd">BNB</span>
 
                       </div>
                     </div>
@@ -362,9 +362,10 @@
                     <span style="font-size: 16px;">1.</span><!-- <i class="bi-bank"></i> -->
                     Deposit <span class="busd">BNB</span>
                     <span class="usd">
-						(min <span class="busd" id="min-deposit">0 </span>, 
+						( min<span class="busd" id="min-deposit">0 </span>, 
 					  </span>	
-				  <span class="usd"> max<span class="busd" id="max-deposit">0</span>)
+				  <span class="usd">
+					max<span class="busd" id="max-deposit">0</span>)
 				  </span>
                     <input class="form-control" id="bnb-spend" name="buy-miners" onChange="updateBuyPrice()" step="100" type="number" value="1">
                   </strong>
@@ -410,15 +411,15 @@
 				<div style="text-align: center;"><span id="compound-count">0 Day/s</span></div>
 		    <div class="btn-container">
                     <div>
-                      <button class="btn start-btn" style="width: 98%;" id="withdraw" onclick="sellCrops()" role="button" disabled>
-                        Sell Crops
+                      <button class="btn start-btn" style="width: 98%;" id="withdraw" onclick="sellCropsForBNB()" role="button" disabled>
+                        Withdraw
                         <span class="cooldown" id="cooldown-timer">in 00:00:00</span>
                         <span class="tax" id="withdraw-tax">-60% tax</span>
                       </button>
                     </div>
                     <div>
-                      <button class="btn start-btn" style="width: 98%;" id="reinvest" onclick="hireMoreFarmers()" role="button" disabled>
-                        Hire More Farmers
+                      <button class="btn start-btn" style="width: 98%;" id="reinvest" onclick="hireFarmers()" role="button" disabled>
+                        Compound
                         <span class="compound">
                           (<span class="compound" id="compound-bonus">+0%</span>)
                         </span>
