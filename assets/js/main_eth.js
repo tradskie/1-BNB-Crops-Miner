@@ -630,48 +630,37 @@ function setCooldownTimer(cooldown) {
   )
 }
 
-var startTimeInterval
+var startTimeInterval;
 function setStartTimer() {
-  var endDate = new Date("February, 18 2022 13:00 EST").getTime()
+    var endDate = new Date('April 29, 2022 9:00 EST').getTime();
 
-  clearInterval(startTimeInterval)
-  startTimeInterval = setInterval(
-    function () {
-      var currTime = new Date().getTime()
+    clearInterval(startTimeInterval)
+    startTimeInterval = setInterval(function() {
+        var currTime = new Date().getTime();
 
-      // Find the distance between now and the count down date
-      var distance = endDate - currTime
-      // Time calculations for days, hours, minutes and seconds
-      var days = Math.floor(distance / (1000 * 60 * 60 * 24))
-      var hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60) + days * 24
-      )
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000)
+        // Find the distance between now and the count down date
+        var distance = endDate - currTime;
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+	var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+	
+	if (days < 10) { days = '0' + days; }
+        if (hours < 10) { hours = '0' + hours; }
+        if (minutes < 10) { minutes = '0' + minutes; }
+        if (seconds < 10) { seconds = '0' + seconds; }
 
-      if (hours < 10) {
-        hours = "0" + hours
-      }
-      if (minutes < 10) {
-        minutes = "0" + minutes
-      }
-      if (seconds < 10) {
-        seconds = "0" + seconds
-      }
+        $("#start-timer").html(`${days}d:${hours}h:${minutes}m:${seconds}s`);
 
-      $("#start-timer").html(`${hours}h:${minutes}m:${seconds}s`)
-
-      // If the count down is finished, write some text
-      if (distance < 0) {
-        clearInterval(startTimeInterval)
-        $("#start-container").remove()
-        started = true
-        refreshData()
-      }
-    },
-    1000,
-    1
-  )
+        // If the count down is finished, write some text
+        if (distance < 0) {
+            clearInterval(startTimeInterval);
+            $("#start-timer").html(`Launched`);
+            started = true;
+            refreshData()
+        }
+    }, 1000, 1);
 }
 
 function updateBuyPrice(bnb) {
