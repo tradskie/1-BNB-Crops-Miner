@@ -176,27 +176,35 @@
               <div class="stats mt-md-3">
                 <h4 class="mb-4 mb-sm-0">
                   <i class="bi bi-check-square-fill icon-custom "></i>
-                  <span id="daily-rate">0% Daily ~ 0% APR</span>
+                  <span id="daily-rate">6% Daily ~ 2190% APR</span>
                 </h4>
                 <h4 class="mb-4 mb-sm-0">
                   <i class="bi bi-check-square-fill icon-custom"></i>
-                  <span id="daily-compound">0% Compound Bonus</span>
+                  <span id="daily-compound">2% Compound Bonus</span>
                 </h4>
                 <h4 class="mb-4 mb-sm-0">
                   <i class="bi bi-check-square-fill icon-custom"></i>
-                  <span id="ref-bonus">0% Referrals</span>
+                  <span id="ref-bonus">7% Referrals</span>
                 </h4>
 				<h4 class="mb-4 mb-sm-0">
                   <i class="bi bi-check-square-fill icon-custom"></i>
-                  <span id="ref-bonus"><span id="compound-step">0</span> hours Compound Timer</span>
+                  <span id="ref-bonus"><span id="compound-step">12</span> Hours Compound Timer</span>
                 </h4>
 				<h4 class="mb-4 mb-sm-0">
                   <i class="bi bi-check-square-fill icon-custom"></i>
-                  <span id="ref-bonus"><span id="withdraw-cooldown">0</span> hours Withdraw Cooldown</span>
+                  <span id="ref-bonus"><span id="withdraw-cooldown">4</span> Hours Withdraw Cooldown</span>
+                </h4>
+				<h4 class="mb-4 mb-sm-0">
+                  <i class="bi bi-check-square-fill icon-custom"></i>
+                  <span id="ref-bonus"><span id="cut-off-step">48</span> Hours Rewards Accumulation Cut-Off</span>
                 </h4>
 				<h4 class="mb-4 mb-sm-0">
                   <i class="bi bi-check-square-fill icon-custom"></i>
                   <span id="ref-bonus">Compound <span id="no-tax-compound-count">0</span> times to avoid feedback Tax!</span>
+                </h4>
+				<h4 class="mb-4 mb-sm-0">
+                  <i class="bi bi-check-square-fill icon-custom"></i>
+                  <span id="ref-bonus"><span id="no-tax-compound-count">12</span> Times Mandatory Compound Feature</span>
                 </h4>
                 <!--
 				<h4 class="mb-4 mb-sm-0">
@@ -205,16 +213,16 @@
                 </h4>
 				-->
               </div>
+			  <br>
               <div class="" style=" text-align: left!important;">
                 <i class="ri-alert-line" style="color: #f3ba2c; font-size: 10px;"></i>
                 <span style="font-weight: 100; font-size: 14px;">
               <strong style="color: #f3ba2c;">Note!</strong> 
-			Aside from the built in anti-whale and anti dump feature from the forked contract, We made an additional enhancement that would require the users to compound X number of times before the user can withdraw without the 60% feedback tax.
-			This feature will ensure stability, sustainability and longevity of the project. In addition, there is also a 3% compound bonus for every compound action that the user will make
-			which can stack up to 12 times(36%).
+			Users should compound X no. of times before they can withdraw. Should a farmer decide not to compound or hire more farmers using his earnings, and continuously withdraw, farmer will be charged with a 80% feedback tax that will remain part of the contract.  
+			<p>
+			In Addition, to further encourage the community to re-hire/compound, there will be an additional 2.5% bonus for each compound action that the user will do, which can stack up to 25% for 10 consecutive times / 5 days. By doing so, this will ensure the long term potential profit of every investor. 
 		    <p><p>
-	      <strong style="color: #f3ba2c;">Recommended!</strong> To maximize the users return of investment in the short and long term, a compound 6 Days/Week and sell 1 Day/Week strategy is recommended. 
-			Which was already battle tested and proven effective by other existing miner projects.
+	      <strong style="color: #f3ba2c;">Recommended!</strong> The best strategy that the team can recommend is to re-hire/compound for 6 days and harvest 1 day a week. This will increase the users investment at the same time increasing the daily yield earnings. This strategy has already been tried and tested by several project and is proven effective. 
                 </span>
               </div>
             </div>
@@ -297,10 +305,8 @@
           <div class="row">
 			<div>
               <span>
-			    <i class="ri-alert-line"></i>
-                <strong style="color: #f3ba2c;">Note:</strong> Funds that are deposited (including compounds) cannot be withdrawn, however the miner will pay daily dividends and
-				  referrals rewards for the life of the contract. Please use at your own risk. Remember, never invest more than you can afford to lose
-				  and always do your own research!
+			    <i style="color: #f3ba2c;" class="ri-alert-line"></i>
+                <strong style="color: #f3ba2c;">Note:</strong>  Funds that are used to initially hire farmers (including re-hire) cannot be withdrawn, however your farmers will indefinitely work and grow crops for you. Please use the application at your own risk. 
               </span>
             </div>
 			
@@ -318,7 +324,7 @@
                       <div>
                         <div>
                           1 <span class="busd">BNB</span>
-                          = <span id="example-miners">0 </span> Miners
+                          = <span id="example-miners">0 </span> Farmers
                         </div>
                         <!-- <div>
                           <i class="bi-minecart"></i>
@@ -364,7 +370,7 @@
                   <button class="start-btn"  style="width: 98%;" id="buy-eggs-btn" onclick="hireFarmers()" role="button" disabled>
                     Hire
                     <span id="eggs-to-buy">0</span>
-                    Miners
+                    Farmers
                   </button>
                 </div>
               </div>
@@ -375,7 +381,7 @@
                   <div>
                     <i class="bi-minecart"></i>
                     <span id="your-miners">0 </span>
-                    Miners
+                    Farmers
                   </div>
                   <div>
                     <i class="bi-arrow-down-short" style="font-size: 27px;"></i>
