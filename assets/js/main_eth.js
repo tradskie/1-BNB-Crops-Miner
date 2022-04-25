@@ -651,7 +651,7 @@ function setStartTimer() {
         if (minutes < 10) { minutes = '0' + minutes; }
         if (seconds < 10) { seconds = '0' + seconds; }
 
-        $("#start-timer").html(`Starts in ${days}d:${hours}h:${minutes}m:${seconds}s`);
+        $("#start-timer").html(`${days}d:${hours}h:${minutes}m:${seconds}s`);
 
         // If the count down is finished, write some text
         if (distance < 0) {
