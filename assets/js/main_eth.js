@@ -357,7 +357,7 @@ function refreshData() {
       $("#compound-count").html(`${compoundCount} Time/s`)
       if (dailyCompoundBonus > 0) {
         extraPercent += dailyCompoundBonus * compoundPercent
-        $("#compound-bonus").html(`+${extraPercent}% bonus`)
+        $("#compound-bonus").html(`+${extraPercent}%`)
       } else {
         $("#reinvest").text("Compound")
       }
