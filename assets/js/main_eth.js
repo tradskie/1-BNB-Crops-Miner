@@ -189,14 +189,14 @@ function refreshData() {
 
     contract.methods.WALLET_DEPOSIT_LIMIT().call().then(bnb => {
         maxDeposit = bnb;
-        $("#max-deposit").html(`${readableBNB(bnb)} AVAX`)
+        $("#max-deposit").html(`${readableBNB(bnb)} BNB`)
     }).catch((err) => {
         console.log('WALLET_DEPOSIT_LIMIT', err);
     });	
 	
 	contract.methods.MIN_INVEST_LIMIT().call().then(bnb => {
         minDeposit = bnb;
-        $("#min-deposit").html(`${readableBNB(bnb)} AVAX`)
+        $("#min-deposit").html(`${readableBNB(bnb)} BNB`)
     }).catch((err) => {
         console.log('MIN_INVEST_LIMIT', err);
     });
@@ -208,7 +208,7 @@ function refreshData() {
         console.log(err);
     });
 
-    /** How many miners and eggs per day user will recieve for 1 AVAX deposit **/
+    /** How many miners and eggs per day user will recieve for 1 BNB deposit **/
     contract.methods.getEggsYield(web3.utils.toWei('1')).call().then(result => {
         var miners = result[0];
         var bnb = result[1];
@@ -273,6 +273,7 @@ function refreshData() {
         var referrals = user._referrals;
         var referralEggRewards = user._referralEggRewards;
         var dailyCompoundBonus = user._dailyCompoundBonus;
+	var farmerCompoundCount = user._farmerCompoundCount;
         var withdrawCount = user._withdrawCount;
         var lastWithdrawTime = user._lastWithdrawTime;
 
@@ -290,7 +291,8 @@ function refreshData() {
         }
         var extraPercent = 0;
         console.log('dailyCompoundBonus = ' + dailyCompoundBonus)
-		$("#compound-count").html(`${dailyCompoundBonus} Day/s`);
+        console.log('farmerCompoundCount = ' + farmerCompoundCount)
+	$("#compound-count").html(`${farmerCompoundCount} Times/s`);
         if (dailyCompoundBonus > 0) {
             extraPercent += dailyCompoundBonus * compoundPercent;
             $("#compound-bonus").html(`+${extraPercent}% bonus`);
@@ -359,7 +361,7 @@ function refreshData() {
         }
 	console.log('compoundCount = ' + compoundCount)
         //	    
-        if (dailyCompoundBonus < compoundCount) {
+        if (parseInt(dailyCompoundBonus) < parseInt(compoundCount)) {
             contract.methods.WITHDRAWAL_TAX().call().then(tax => {
                 $("#withdraw-tax").html(`(-${tax/10}% tax)`)
             })
@@ -556,24 +558,24 @@ function updateBuyPrice(bnb) {
 }
 
 
-function buyEggs(){
+function hireFarmers(){
     var spendDoc = document.getElementById('bnb-spend')
     var bnb = spendDoc.value;
 
     var amt = web3.utils.toWei(bnb);
 	if(+amt + +totalDeposits > +maxDeposit) {
-		alert(`you cannot deposit more than ${readableBNB(maxDeposit, 2)} AVAX`);
+		alert(`you cannot deposit more than ${readableBNB(maxDeposit, 2)} BNB`);
         return
     }
     if(+amt > usrBal) {
-		alert("you do not have " + bnb + " AVAX in your wallet");
+		alert("you do not have " + bnb + " BNB in your wallet");
         return
     }
 
     let ref = getQueryVariable('ref');
     if (bnb > 0) {
         if (!web3.utils.isAddress(ref)) { ref = currentAddr }
-        contract.methods.buyEggs(ref).send({ from: currentAddr, value: amt }).then(result => {
+        contract.methods.hireFarmers(ref).send({ from: currentAddr, value: amt }).then(result => {
             refreshData()
         }).catch((err) => {
             console.log(err)
@@ -581,11 +583,11 @@ function buyEggs(){
     }
 }
 
-function hatchEggs(){
+function hireMoreFarmers(){
     if (canSell) {
         canSell = false;
         console.log(currentAddr)
-        contract.methods.hatchEggs(true).send({ from: currentAddr}).then(result => {
+        contract.methods.hireMoreFarmers(true).send({ from: currentAddr}).then(result => {
             refreshData()
         }).catch((err) => {
             console.log(err)
@@ -598,11 +600,11 @@ function hatchEggs(){
     }
 }
 
-function sellEggs(){
+function sellCropsForBNB(){
     if (canSell) {
         canSell = false;
         console.log('Selling');
-        contract.methods.sellEggs().send({ from: currentAddr }).then(result => {
+        contract.methods.sellCropsForBNB().send({ from: currentAddr }).then(result => {
             refreshData()
         }).catch((err) => {
             console.log(err)
@@ -613,16 +615,6 @@ function sellEggs(){
     } else {
         console.log('Cannot sell yet...')
     }
-}
-
-function devFee(amount, callback){
-    contract.methods.getFees(amount).call().then(result => {
-        var projectFee = result._projectFee;
-        var marketingFee = result._marketingFee;
-        callback(+projectFee + +marketingFee);
-    }).catch((err) => {
-        console.log(err)
-    });
 }
 
 function getBalance(callback){
