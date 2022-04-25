@@ -292,10 +292,10 @@ function refreshData() {
         var extraPercent = 0;
         console.log('dailyCompoundBonus = ' + dailyCompoundBonus)
         console.log('farmerCompoundCount = ' + farmerCompoundCount)
-	$("#compound-count").html(`${farmerCompoundCount} Times/s`);
+	$("#compound-count").html(`${farmerCompoundCount} Time/s`);
         if (dailyCompoundBonus > 0) {
             extraPercent += dailyCompoundBonus * compoundPercent;
-            $("#compound-bonus").html(`+${extraPercent}% bonus`);
+            $("#compound-bonus").html(`+${extraPercent}%`);
         } else {
             $("#reinvest").text("Compound");
         }
@@ -364,9 +364,11 @@ function refreshData() {
         if (parseInt(dailyCompoundBonus) < parseInt(compoundCount)) {
             contract.methods.WITHDRAWAL_TAX().call().then(tax => {
                 $("#withdraw-tax").html(`(-${tax/10}% tax)`)
+		console.log('dailyCompoundBonus < compoundCount = true');  
             })
         } else {
             $('#withdraw-tax').attr('hidden', true)
+            console.log('dailyCompoundBonus < compoundCount = false'); 
         }
     }).catch((err) => {
         console.log('getUserInfo', err);
