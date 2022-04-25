@@ -406,7 +406,7 @@ function setInitialDeposit(initialDeposit) {
 }
 
 function setTotalDeposit(totalDeposit) {
-    var totalBNB = readableBNB(totalDeposit, 2);
+    var totalBNB = readableBNB(totalDeposit, 4);
     //var totalUSD = Number(priceInUSD*totalBNB).toFixed(2);
     $("#total-deposit").html(totalBNB);
     //$("#total-deposit-usd").html(totalUSD);
