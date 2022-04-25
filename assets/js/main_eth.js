@@ -196,7 +196,7 @@ function refreshData() {
 	
 	contract.methods.MIN_INVEST_LIMIT().call().then(bnb => {
         minDeposit = bnb;
-        $("#min-deposit").html(`${readableBNB(bnb)} BNB`)
+        $("#min-deposit").html(` ${readableBNB(bnb)} BNB`)
     }).catch((err) => {
         console.log('MIN_INVEST_LIMIT', err);
     });
