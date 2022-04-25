@@ -212,7 +212,7 @@ function refreshData() {
     contract.methods.getEggsYield(web3.utils.toWei('1')).call().then(result => {
         var miners = result[0];
         var bnb = result[1];
-        var amt = readableBNB(bnb, 4);
+        var amt = readableBNB(bnb, 6);
 
         $("#example-miners").html(miners)
         $("#example-bnb").html(roundNum(amt))
@@ -241,7 +241,7 @@ function refreshData() {
             $('#total-players').html(result._totalDeposits);
             var ref = result._totalRefBonus;
             if (ref > 0) {
-                var refBNB = readableBNB(ref, 2);
+                var refBNB = readableBNB(ref, 4);
                 $("#total-ref").html(refBNB);
                 //var refUSD = Number(priceInUSD*refBNB).toFixed(2);
                 //$('#total-ref-usd').html(refUSD)
@@ -331,7 +331,7 @@ function refreshData() {
         }
 
         if (referralEggRewards > 0) {
-            var refBNB = readableBNB(referralEggRewards, 4);
+            var refBNB = readableBNB(referralEggRewards, 6);
             $("#ref-rewards-bnb").html(refBNB);
             //var refUSD = Number(priceInUSD*refBNB).toFixed(2);
             //$('#ref-rewards-usd').html(refUSD)
@@ -350,7 +350,7 @@ function refreshData() {
         if (miners > 0) {
             var eggsPerDay = 24*60*60 * miners ;
             contract.methods.calculateEggSellForYield(eggsPerDay, web3.utils.toWei('1')).call().then(earnings => {
-                var eggsBNB = readableBNB(earnings, 4)
+                var eggsBNB = readableBNB(earnings, 6)
                 $("#eggs-per-day").html(eggsBNB);
                 //var eggsUSD = Number(priceInUSD*eggsBNB).toFixed(2);
                 //$('#eggs-per-day-usd').html(eggsUSD)
@@ -399,7 +399,7 @@ function getQueryVariable(variable) {
 
 function setInitialDeposit(initialDeposit) {
     totalDeposits = initialDeposit;
-    var initialBNB = readableBNB(initialDeposit, 2);
+    var initialBNB = readableBNB(initialDeposit, 4);
     //var initialUSD = Number(priceInUSD*initialBNB).toFixed(2);
     $("#initial-deposit").html(initialBNB);
     //$("#initial-deposit-usd").html(initialUSD);
@@ -413,7 +413,7 @@ function setTotalDeposit(totalDeposit) {
 }
 
 function setTotalWithdrawn(totalWithdrawn) {
-    var totalBNB = readableBNB(totalWithdrawn, 2);
+    var totalBNB = readableBNB(totalWithdrawn, 4);
     //var totalUSD = Number(priceInUSD*totalBNB).toFixed(2);
     $("#total-withdrawn").html(totalBNB);
     //$("#total-withdrawn-usd").html(totalUSD);
