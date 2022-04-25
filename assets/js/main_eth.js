@@ -355,7 +355,7 @@ function refreshData() {
       var extraPercent = 0
       console.log("compoundCount = " + compoundCount)
       $("#compound-count").html(`${compoundCount} Time/s`)
-      if (dailyCompoundBonus > 0) {
+      if (parseInt(dailyCompoundBonus) < parseInt(compoundCount)) {
         extraPercent += dailyCompoundBonus * compoundPercent
         $("#compound-bonus").html(`+${extraPercent}% bonus`)
       } else {
