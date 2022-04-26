@@ -243,7 +243,7 @@ function refreshData() {
             var ref = web3.utils.fromWei(result._totalRefBonus);		
             if (ref > 0) {
                 //var refBNB = readableBNB(ref, 4);
-                $("#total-ref").html(roundNum(refBNB));
+                $("#total-ref").html(roundNum(ref));
                 //var refUSD = Number(priceInUSD*refBNB).toFixed(2);
                 //$('#total-ref-usd').html(refUSD)
             } else {
