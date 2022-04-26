@@ -1198,6 +1198,9 @@ section {
   background: #fafffe;
   border: 1px solid #000;
   border-radius: 7px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  font-size: x-large;
 }
 
 .form-control:focus {
