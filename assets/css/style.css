@@ -311,7 +311,7 @@ h6 {
   background-color: #f0b90b;
 }
 #withdraw-tax {
-  color: grey;
+  color: red;
   font-size: 12px;
 }
 .navbar {
