@@ -77,12 +77,12 @@
   display: inline-block;
   /* margin-top: 30px!important; */
   margin: 5px;
-  font-family: "Press Start 2p";
+  /* font-family: "Press Start 2p"; */
   font-weight: 300;
   font-size: 1rem;
   padding: 10px;
   background-color: var(--token);
-  text-shadow: -1px -1px black, 1px 1px rgb(61, 61, 61);
+  /* text-shadow: -1px -1px black, 1px 1px rgb(61, 61, 61); */
   color: rgb(255, 255, 255);
   -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
