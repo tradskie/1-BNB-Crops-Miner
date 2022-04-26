@@ -212,7 +212,7 @@ function refreshData() {
     contract.methods.getEggsYield(web3.utils.toWei('1')).call().then(result => {
         var miners = result[0];
         var bnb = result[1];
-        var amt = readableBNB(bnb, 6);
+        var amt = readableBNB(bnb, 4);
 
         $("#example-miners").html(miners)
         $("#example-bnb").html(roundNum(amt))
