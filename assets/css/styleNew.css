@@ -94,6 +94,29 @@
   padding-top: 14px;
 }
 
+.start-btn2 {
+  text-align: center;
+  display: inline-block;
+  /* margin-top: 30px!important; */
+  margin: 4px;
+  /* font-family: "Press Start 2p"; */
+  font-weight: 300;
+  font-size: 1rem;
+  padding: 10px;
+  background-color: #f3ba2c00;
+  /* text-shadow: -1px -1px black, 1px 1px rgb(61, 61, 61); */
+  color: white;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+  box-shadow: 0 0.2em #white;
+  cursor: pointer;
+  border: none;
+  padding-top: 14px;
+  border: 2px solid;
+}
+
 hr {
   color: var(--lines);
   height: 1px;
