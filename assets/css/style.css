@@ -732,8 +732,8 @@ h6 {
 .stats-row-container .header {
   font-size: 21px;
   font-weight: 300;
-  text-align: center;
-  line-height: 20px;
+  text-align: start;
+  line-height: 30px;
   transition: ease-in-out 0.3s;
   overflow-wrap: anywhere;
 }
