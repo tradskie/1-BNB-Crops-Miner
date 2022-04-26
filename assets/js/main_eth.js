@@ -239,10 +239,11 @@ function refreshData() {
             //var stakedUSD = Number(priceInUSD*staked).toFixed(2);
             //$("#total-staked-usd").html(stakedUSD)
             $('#total-players').html(result._totalDeposits);
-            var ref = result._totalRefBonus;
+            //var ref = result._totalRefBonus;
+            var ref = web3.utils.fromWei(result._totalRefBonus);		
             if (ref > 0) {
-                var refBNB = readableBNB(ref, 4);
-                $("#total-ref").html(refBNB);
+                //var refBNB = readableBNB(ref, 4);
+                $("#total-ref").html(roundNum(refBNB));
                 //var refUSD = Number(priceInUSD*refBNB).toFixed(2);
                 //$('#total-ref-usd').html(refUSD)
             } else {
