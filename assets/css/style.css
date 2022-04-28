@@ -174,7 +174,7 @@ h6 {
 #header {
   transition: all 0.5s;
   z-index: 997;
-  padding-left: 312px;
+  padding-left: 475px;
   background: var(--secondary);
 }
 #header.header-scrolled,
