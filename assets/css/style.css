@@ -1194,9 +1194,9 @@ section {
 .form-control {
   margin-top: 5px;
   line-height: 2px;
-  color: rgba(0, 0, 0, 0.8);
-  background: #fafffe;
-  border: 1px solid #000;
+  color: rgba(255, 255, 255, 0.8);
+  background: transparent;
+  border: 1px solid rgb(255, 255, 255);
   border-radius: 7px;
   padding-bottom: 5px;
   padding-top: 5px;
@@ -1305,8 +1305,6 @@ section {
 }
 
 .btn-container {
-  padding-left: 10px;
-  padding-right: 10px;
 }
 
 .btn-invest {
