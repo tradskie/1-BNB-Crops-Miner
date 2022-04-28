@@ -51,6 +51,9 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
+<!-- <video autoplay muted loop id="myVideo">
+  <source src="./assets/img/video-1650871730.mp4" type="video/mp4">
+</video> -->
 
 <body>
 
@@ -369,7 +372,7 @@
 				  </span>
                     <input class="form-control" id="bnb-spend" name="buy-miners" onChange="updateBuyPrice()" step="100" type="number" value="1">
                   </strong>
-                  <button class="start-btn"  style="width: 98%;" id="buy-eggs-btn" onclick="hireFarmers()" role="button" disabled>
+                  <button class="start-btn"  style="width: 100%;margin-bottom: 10px; margin-top: 15px;" id="buy-eggs-btn" onclick="hireFarmers()" role="button" disabled>
                     Hire
                     <span id="eggs-to-buy">0</span>
                     Farmers
@@ -410,8 +413,8 @@
 				</div>
 				<div style="text-align: center;"><span id="compound-count">0 Time/s</span></div>
 		    <div class="btn-container">
-                    <div>
-                      <button class="btn start-btn" style="width: 98%;" id="withdraw" onclick="sellCrops()" role="button" disabled>
+                    <div style="padding-top: 6px;padding-bottom: 14px;">
+                      <button class="btn start-btn" style="width: 98%;background: transparent;border: 1px solid white;padding: 8px;margin-top: 5px;" id="withdraw" onclick="sellCrops()" role="button" disabled>
                         Sell Crops
                         <span class="cooldown" id="cooldown-timer">in 00:00:00</span>
                         <span class="tax" id="withdraw-tax">-80% tax</span>
