@@ -79,12 +79,12 @@
   }
 }
 
-#logo-space {
-  /*   animation-duration: 10s;
+/* #logo-space {
+     animation-duration: 10s;
   animation-iteration-count: infinite;
   animation-name: clockwiseSpin;
-  animation-timing-function: linear; */
-}
+  animation-timing-function: linear; 
+} */
 
 .dot-2 {
   height: 12px;
