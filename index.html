@@ -43,9 +43,11 @@
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
+
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="assets/css/styleNew.css" rel="stylesheet">
+  
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/3.0.0-rc.5/web3.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -153,10 +155,26 @@
   <section id="hero" class="d-flex align-items-center justify-content-center">
     <div class=container>
       <div class="row" style="margin: 0 auto;">
-        <div class="big-timer" id="start-container">
+        <!-- <div class="big-timer" id="start-container">
 	  <i class="bi bi-clock icon-custom"></i>
           <strong id="start-timer">00:00:00:00</strong>
+        </div> -->
+
+        <div class="dial-container">
+          <div class="dial-wraps">
+            <input id="dial-hours" data-min="0" data-max="24">
+            <span class="dial-text"><span id="hours"></span> Hours</span>
+          </div>
+          <div class="dial-wrap">
+            <input id="dial-mins" data-min="0" data-max="60">
+            <span class="dial-text"><span id="mins"></span> Minutes</span>
+          </div>
+          <div class="dial-wrap">
+            <input id="dial-seconds" data-min="0" data-max="60">
+            <span class="dial-text"><span id="seconds"></span> Seconds</span>
+          </div>
         </div>
+
       </div>
       <div class="content-box" data-aos="zoom-in">
         <div class="row info-container" style="padding: 0px;" data-aos="zoom-in">
@@ -173,7 +191,7 @@
                 </div>
             </div>
             </div>
-              <span id="wallet-connection-heading">Wallet Connection</span><span id="dotting" class="dot"></span>
+              <span id="wallet-connection-heading">Wallet Connection</span><span id="dotting" class="dot-2"></span>
           </div>
           <div class="row stats-row-container " data-aos="zoom-in">
             <div class="col-md-6" >
@@ -640,6 +658,8 @@ BNB Crops Farmer also has a very unique feature that has never been done before 
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/js/moment.js"></script>
+  <script src="assets/js/timer.js"></script>
 
 
   <!-- Template Main JS File -->

@@ -1,0 +1,37 @@
+.dial-container {
+    margin: 60px auto;
+    width: 720px;
+    overflow: hidden;
+    background: #191919;
+    opacity: 0;
+    transition: opacity 1s linear;
+    display: flex !important;
+    flex-direction: row;
+  }
+  .loaded {
+    opacity: 1;
+  }
+  .dial-wrap {
+    width: 100%;
+    float: left;
+    text-align: center;
+    position: relative;
+    display: flex !important;
+    flex-direction: column !important;
+
+  } 
+    .dial-wrap > div {
+      display: block;
+    }
+     
+    .dial-wrap > .dial-text {
+      display: block;
+      position: relative;
+      top: -85px;
+      color: #fff;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'Roboto Condensed', sans-serif;
+    }
+  
