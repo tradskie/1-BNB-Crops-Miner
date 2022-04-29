@@ -24,7 +24,7 @@ var withdrawCooldown=0;
 var contract;
 
 //const minerAddress = '';
-const minerAddress = '0x6D6673b5a69db8944f506CC1Fd2A4Dd39Da03265'; //0x35b182Cbb67688B20a5fc393BEE5e83c1cB4C8c0
+const minerAddress = '0x35b182Cbb67688B20a5fc393BEE5e83c1cB4C8c0';
 //https://bscscan.com/address/0x35b182cbb67688b20a5fc393bee5e83c1cb4c8c0#code
 var started = true;
 var canSell = true;
