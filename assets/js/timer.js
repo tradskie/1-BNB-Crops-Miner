@@ -1732,7 +1732,7 @@ if (!document.createElement('canvas').getContext) {
     function updateTime() {
       
     var start  = moment(),  // Time start
-        target = moment("Apr 29, 2022 19:00:00"), // Target Time
+        target = moment("April 29, 2022 9:00 EST"), // Target Time
         diff   = target - start; // Difference
     
     var days  = Math.floor( diff / (1000*60*60*24) ), // Calc number of days...
