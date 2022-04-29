@@ -47,6 +47,11 @@ function myReferralLink(address) {
     copyText.value = prldoc.textContent
 }
 
+async function myConnect(){
+    var element = document.getElementById("dotting");
+    element.classList.toggle("dot-2");
+}
+
 async function connect() {
     console.log('Connecting to wallet...')
     try {

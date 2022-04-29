@@ -174,7 +174,7 @@ h6 {
 #header {
   transition: all 0.5s;
   z-index: 997;
-  /**padding-left: 315px; **/
+  padding-left: 250px;
   background: var(--secondary);
 }
 #header.header-scrolled,
@@ -208,15 +208,44 @@ h6 {
   --------------------------------------------------------------*/
 .connect-btn {
   color: #fff;
-  border-radius: 6px;
   white-space: nowrap;
   transition: 0.3s;
-  font-size: 14px;
+  font-size: 12px;
   border: 2px solid #f3ba2c;
+
+  margin: 0 20px;
+  padding: 0 8px;
+  border-radius: 15px;
+  height: 32px;
+  min-width: 120px;
+  overflow: hidden;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  max-width: 160px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 16px !important;
+  letter-spacing:1.2px;
+  z-index: 10;
+  font-weight: 500!important;
+  text-transform: unset !important;
+  font-weight: 1000;
+
+  color: var(--main-yellow) !important;
+
+  background-color: #0083f6;
+  background-color: var(--main-darkbl);
+  color: var(--main-yellow) !important;
+  font-family: Manrope, sans-serif;
 }
 .connect-btn:hover {
-  background: #f3ba2c;
-  color: #343a40;
+  /* background: #433208; */
+  color: var(--main-yellow);
 }
 @media (max-width: 992px) {
   .connect-btn {
@@ -441,7 +470,7 @@ h6 {
   overflow: hidden;
   top: 0;
   right: 0;
-  left: 0;
+  /* left: 0; */
   bottom: 0;
   background: rgba(0, 0, 0, 0.9);
   transition: 0.3s;
@@ -466,7 +495,7 @@ h6 {
 .navbar-mobile a,
 .navbar-mobile a:focus {
   padding: 10px 20px;
-  font-size: 15px;
+  /* font-size: 15px; */
   color: whitesmoke;
   background-color: transparent;
 }
