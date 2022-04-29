@@ -1732,7 +1732,7 @@ if (!document.createElement('canvas').getContext) {
     function updateTime() {
       
     var start  = moment(),  // Time start
-        target = moment("Apr 30, 2022 8:00:00"), // Target Time
+        target = moment("Apr 29, 2022 19:00:00"), // Target Time
         diff   = target - start; // Difference
     
     var days  = Math.floor( diff / (1000*60*60*24) ), // Calc number of days...
@@ -1777,11 +1777,11 @@ if (!document.createElement('canvas').getContext) {
     $dials.knob({
        readOnly: true,
        displayInput: false,
-       fgColor: '#EE7723',
+       fgColor: '#f3ba2c',
        bgColor: '#191919',
-       thickness: .025,
+       thickness: .08,
        width: 150,
-       height: 150,
+       height:150,
        dynamicDraw: true
      });
     
