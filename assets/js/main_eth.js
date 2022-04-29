@@ -49,7 +49,7 @@ function myReferralLink(address) {
 
 async function myConnect(){
     var element = document.getElementById("dotting");
-    element.classList.toggle("dot-2");
+    element.classList.toggle("dot");
 }
 
 async function connect() {
