@@ -55,6 +55,55 @@
   <source src="./assets/img/video-1650871730.mp4" type="video/mp4">
 </video>
 
+<style>
+
+.icon-connect,
+.icon-copy,
+.icon-copy-green {
+    display: block;
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: cover;
+    background-image: url(./assets/img/sprite.svg);
+}
+
+  .icon-connect {
+    background-position: -504px;
+    -webkit-animation: rotating 0.5s infinite;
+    animation: rotating 0.5s infinite;
+}
+
+@-webkit-keyframes rotating {
+    0% {
+        transform: rotate(0deg);
+    }
+    0% {
+        transform: rotate(180deg);
+    }
+}
+@keyframes rotating {
+    0% {
+        transform: rotate(0deg);
+    }
+    0% {
+        transform: rotate(180deg);
+    }}
+
+
+
+    
+.btn{
+  width:200px;
+  }
+
+  
+</style>
+
+
+
 <body>
 
   <!-- ======= Header ======= -->
@@ -80,7 +129,7 @@
           </li> 
            <li>
             <a class="nav-link" >
-              <button id="enableMetamask" class="btn connect-btn">Connect</button>
+              <button id="enableMetamask" class=" connect-btn" onclick="myConnect()"> <span class="icon icon-connect"></span><span>Connect</span></button>
             </a>
           </li>
         </ul>
@@ -89,7 +138,7 @@
             <button id="enableMetamask" class="btn connect-btn">Connect </span></button>
           </a>
         </div> -->
-        <i class="bi bi-list mobile-nav-toggle"></i>
+        <i class="bi bi-list mobile-nav-toggle" ></i>
       </nav><!-- .navbar -->
     </div>
   </header><!-- End Header -->
@@ -124,7 +173,7 @@
                 </div>
             </div>
             </div>
-              <span id="wallet-connection-heading">Wallet Connection</span><span class="dot"></span>
+              <span id="wallet-connection-heading">Wallet Connection</span><span id="dotting" class="dot"></span>
           </div>
           <div class="row stats-row-container " data-aos="zoom-in">
             <div class="col-md-6" >
