@@ -296,7 +296,7 @@ function refreshData() {
         var extraPercent = 0;
         console.log('dailyCompoundBonus = ' + dailyCompoundBonus)
         console.log('farmerCompoundCount = ' + farmerCompoundCount)
-	$("#compound-count").html(`${farmerCompoundCount} Time/s`);
+	$("#compound-count").html(`${dailyCompoundBonus} Time/s`);
         if (dailyCompoundBonus > 0) {
             extraPercent += dailyCompoundBonus * compoundPercent;
             $("#compound-bonus").html(`+${extraPercent}%`);
