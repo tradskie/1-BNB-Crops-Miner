@@ -63,18 +63,7 @@ async function connect() {
             console.log('Please connect to MetaMask.');
             $('#enableMetamask').html('Connect')
         } else if (accounts[0] !== currentAddr) {
-            currentAddr = accounts[0];
-            if (currentAddr !== null) {
-                myReferralLink(currentAddr)
-                console.log('Wallet connected = '+ currentAddr)
-
-                loadContracts()
-                refreshData()
-
-                let shortenedAccount = currentAddr.replace(currentAddr.substring(3, 39), "***")
-                $('#enableMetamask').html(shortenedAccount)
-            }
-            $('#enableMetamask').attr('disabled', true)
+            loginActions(accounts);
         }
     } catch (err) {
         if (err.code === 4001) {
@@ -86,6 +75,21 @@ async function connect() {
         }
         $('#enableMetamask').attr('disabled', false)
     }
+}
+
+function loginActions(accounts) {
+    currentAddr = accounts[0];
+    if (currentAddr !== null) {
+        myReferralLink(currentAddr);
+        console.log('Wallet connected = ' + currentAddr);
+
+        loadContracts();
+        refreshData();
+
+        let shortenedAccount = currentAddr.replace(currentAddr.substring(3, 39), "***");
+        $('#enableMetamask').html(shortenedAccount);
+    }
+    $('#enableMetamask').attr('disabled', true);
 }
 
 async function loadWeb3() {
@@ -138,7 +142,12 @@ function refreshData() {
     //         priceInUSD = +priceJson['binancecoin']['usd'];
     //     });
     // } catch { priceInUSD = 0; }
-
+	
+	if(!contract || !contract.methods){
+        console.log('contract is not yet loaded')
+        loadContracts()
+        // return;
+    }
     contract.methods.EGGS_TO_HIRE_1MINERS().call().then(eggs => {
         eggstohatch1 = eggs
         var dailyPercent = Number((86400 / eggstohatch1) * 100);
@@ -228,7 +237,7 @@ function refreshData() {
         console.log(err);
     });
 
-    if (started) {
+     if (started) {
         contract.methods.getBalance().call().then(balance => {
             contractBalance = balance;
             var amt = web3.utils.fromWei(balance);
@@ -261,122 +270,139 @@ function refreshData() {
         });
     }
 
-    web3.eth.getBalance(currentAddr).then(userBalance => {
-        usrBal = userBalance;
-        var amt = web3.utils.fromWei(userBalance);
-        $("#user-balance").html(roundNum(amt));
-        //var usd = Number(priceInUSD*amt).toFixed(2);
-        //$("#user-balance-usd").html(usd)
-    }).catch((err) => {
-        console.log(err);
-    });
-
-    contract.methods.getUserInfo(currentAddr).call().then(user => {
-        var initialDeposit = user._initialDeposit;
-        var userDeposit = user._userDeposit;
-        var miners = user._miners;
-        var totalWithdrawn = user._totalWithdrawn;
-        var lastHatch = user._lastHatch;
-        var referrals = user._referrals;
-        var referralEggRewards = user._referralEggRewards;
-        var dailyCompoundBonus = user._dailyCompoundBonus;
-	var farmerCompoundCount = user._farmerCompoundCount;
-        var lastWithdrawTime = user._lastWithdrawTime;
-        console.log('last withdraw time = ' + lastWithdrawTime)
-
-        var now = new Date().getTime() / 1000;
-
-        var diff = (+lastHatch + +compoundStep) - now;
-        if (diff > 0) {
-            setCompoundTimer(lastHatch);
-        } else {
-            $(".compound-timer").text("00:00:00");
-            $('#reinvest').attr('disabled', false)
+    if(!currentAddr) {
+        console.log('check if user is logged in');
+        web3.eth.getAccounts(function(err, accounts){
+            if (err != null) {
+                console.error("An error occurred: "+err);
         }
-        var extraPercent = 0;
-        console.log('dailyCompoundBonus = ' + dailyCompoundBonus)
-        console.log('farmerCompoundCount = ' + farmerCompoundCount)
-	$("#compound-count").html(`${dailyCompoundBonus} Time/s`);
-        if (dailyCompoundBonus > 0) {
-            extraPercent += dailyCompoundBonus * compoundPercent;
-            $("#compound-bonus").html(`+${extraPercent}%`);
-        } else {
-            $("#reinvest").text("Compound");
-        }
+            else if (accounts.length == 0) {
+                console.log("User is not logged in to MetaMask");
+            }
+            else {console.log("User is logged in to MetaMask");
+            loginActions(accounts);}
+        });
+        return;
+    } else {
+        web3.eth.getBalance(currentAddr).then(userBalance => {
+            usrBal = userBalance;
+            var amt = web3.utils.fromWei(userBalance);
+            $("#user-balance").html(roundNum(amt));
+            //var usd = Number(priceInUSD*amt).toFixed(2);
+            //$("#user-balance-usd").html(usd)
+        }).catch((err) => {
+            console.log(err);
+        });
+    
+        contract.methods.getUserInfo(currentAddr).call().then(user => {
+            var initialDeposit = user._initialDeposit;
+            var userDeposit = user._userDeposit;
+            var miners = user._miners;
+            var totalWithdrawn = user._totalWithdrawn;
+            var lastHatch = user._lastHatch;
+            var referrals = user._referrals;
+            var referralEggRewards = user._referralEggRewards;
+            var dailyCompoundBonus = user._dailyCompoundBonus;
+        var farmerCompoundCount = user._farmerCompoundCount;
+            var lastWithdrawTime = user._lastWithdrawTime;
+            console.log('last withdraw time = ' + lastWithdrawTime)
+    
+            var now = new Date().getTime() / 1000;
+    
+            var diff = (+lastHatch + +compoundStep) - now;
+            if (diff > 0) {
+                setCompoundTimer(lastHatch);
+            } else {
+                $(".compound-timer").text("00:00:00");
+                $('#reinvest').attr('disabled', false)
+            }
+            var extraPercent = 0;
+            console.log('dailyCompoundBonus = ' + dailyCompoundBonus)
+            console.log('farmerCompoundCount = ' + farmerCompoundCount)
+        $("#compound-count").html(`${farmerCompoundCount} Time/s`);
+            if (dailyCompoundBonus > 0) {
+                extraPercent += dailyCompoundBonus * compoundPercent;
+                $("#compound-bonus").html(`+${extraPercent}%`);
+            } else {
+                $("#reinvest").text("Compound");
+            }
+    
+            var cutOffDiff = (+lastHatch + +cutoffStep) - now;
+            if (cutOffDiff > 0) {
+                setCutoffTimer(lastHatch)
+            } else {
+                $("#claim-timer").html("00:00:00")
+            }
+    
+            var coolDownDiff = (+lastHatch + +withdrawCooldown) - now;
+            if (coolDownDiff > 0) {
+                setCooldownTimer(coolDownDiff)
+            } else {
+                $("#cooldown-timer").html("");
+                $("#withdraw").attr('disabled', false);
+            }
+    
+            if (miners > 0) {
+                $("#your-miners").html(miners);
+                contract.methods.getAvailableEarnings(currentAddr).call().then(function (earnings) {
+                    var bnbMined = readableBNB(earnings, 4)
+                    $("#mined").html(bnbMined);
+                    //var minedUsd = Number(priceInUSD*bnbMined).toFixed(2);
+                    //$('#mined-usd').html(minedUsd)
+                }).catch((err) => {
+                    console.log('getAvailableEarnings', err);
+                    throw err;
+                });
+            } else {
+                $("#mined").html(0);
+            }
+    
+            if (referralEggRewards > 0) {
+                var refBNB = readableBNB(referralEggRewards, 4);
+                $("#ref-rewards-bnb").html(refBNB);
+                //var refUSD = Number(priceInUSD*refBNB).toFixed(2);
+                //$('#ref-rewards-usd').html(refUSD)
+                $('#ref-count').html(referrals);
+            } else {
+                $("#ref-rewards-bnb").html("0");
+                //$('#ref-rewards-usd').html("0.00");
+                $('#ref-count').html('0');
+            }
+    
+            setInitialDeposit(initialDeposit);
+            setTotalDeposit(userDeposit);
+            setTotalWithdrawn(totalWithdrawn);
+    
+    
+            if (miners > 0) {
+                var eggsPerDay = 24*60*60 * miners ;
+                contract.methods.calculateEggSellForYield(eggsPerDay, web3.utils.toWei('1')).call().then(earnings => {
+                    var eggsBNB = readableBNB(earnings, 4)
+                    $("#eggs-per-day").html(eggsBNB);
+                    //var eggsUSD = Number(priceInUSD*eggsBNB).toFixed(2);
+                    //$('#eggs-per-day-usd').html(eggsUSD)
+                }).catch((err) => {
+                    console.log('calculateEggSellForYield', err);
+                    throw err;
+                });
+            }
+        console.log('compoundCount = ' + compoundCount)
+            //	    
+            if (parseInt(dailyCompoundBonus) < parseInt(compoundCount)) {
+                contract.methods.WITHDRAWAL_TAX().call().then(tax => {
+                    $("#withdraw-tax").html(`(-${tax/10}% tax)`)
+            console.log('dailyCompoundBonus < compoundCount = true');  
+                })
+            } else {
+                $('#withdraw-tax').attr('hidden', true)
+                console.log('dailyCompoundBonus < compoundCount = false'); 
+            }
+        }).catch((err) => {
+            console.log('getUserInfo', err);
+        });
+    }
 
-        var cutOffDiff = (+lastHatch + +cutoffStep) - now;
-        if (cutOffDiff > 0) {
-            setCutoffTimer(lastHatch)
-        } else {
-            $("#claim-timer").html("00:00:00")
-        }
-
-        var coolDownDiff = (+lastHatch + +withdrawCooldown) - now;
-        if (coolDownDiff > 0) {
-            setCooldownTimer(coolDownDiff)
-        } else {
-            $("#cooldown-timer").html("");
-            $("#withdraw").attr('disabled', false);
-        }
-
-        if (miners > 0) {
-            $("#your-miners").html(miners);
-            contract.methods.getAvailableEarnings(currentAddr).call().then(function (earnings) {
-                var bnbMined = readableBNB(earnings, 4)
-                $("#mined").html(bnbMined);
-                //var minedUsd = Number(priceInUSD*bnbMined).toFixed(2);
-                //$('#mined-usd').html(minedUsd)
-            }).catch((err) => {
-                console.log('getAvailableEarnings', err);
-                throw err;
-            });
-        } else {
-            $("#mined").html(0);
-        }
-
-        if (referralEggRewards > 0) {
-            var refBNB = readableBNB(referralEggRewards, 4);
-            $("#ref-rewards-bnb").html(refBNB);
-            //var refUSD = Number(priceInUSD*refBNB).toFixed(2);
-            //$('#ref-rewards-usd').html(refUSD)
-            $('#ref-count').html(referrals);
-        } else {
-            $("#ref-rewards-bnb").html("0");
-            //$('#ref-rewards-usd').html("0.00");
-            $('#ref-count').html('0');
-        }
-
-        setInitialDeposit(initialDeposit);
-        setTotalDeposit(userDeposit);
-        setTotalWithdrawn(totalWithdrawn);
-
-
-        if (miners > 0) {
-            var eggsPerDay = 24*60*60 * miners ;
-            contract.methods.calculateEggSellForYield(eggsPerDay, web3.utils.toWei('1')).call().then(earnings => {
-                var eggsBNB = readableBNB(earnings, 4)
-                $("#eggs-per-day").html(eggsBNB);
-                //var eggsUSD = Number(priceInUSD*eggsBNB).toFixed(2);
-                //$('#eggs-per-day-usd').html(eggsUSD)
-            }).catch((err) => {
-                console.log('calculateEggSellForYield', err);
-                throw err;
-            });
-        }
-	console.log('compoundCount = ' + compoundCount)
-        //	    
-        if (parseInt(dailyCompoundBonus) < parseInt(compoundCount)) {
-            contract.methods.WITHDRAWAL_TAX().call().then(tax => {
-                $("#withdraw-tax").html(`(-${tax/10}% tax)`)
-		console.log('dailyCompoundBonus < compoundCount = true');  
-            })
-        } else {
-            $('#withdraw-tax').attr('hidden', true)
-            console.log('dailyCompoundBonus < compoundCount = false'); 
-        }
-    }).catch((err) => {
-        console.log('getUserInfo', err);
-    });
+    
 
     updateBuyPrice();
     console.log('Done refreshing data...')
