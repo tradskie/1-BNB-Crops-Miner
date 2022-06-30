@@ -186,24 +186,24 @@
 .start-btn2 {
   text-align: center;
   display: inline-block;
-  margin-top: 30px !important;
+  margin-top: 50px !important;
   margin: auto;
-  /* font-family: "Press Start 2p"; */
   font-weight: 300;
-  font-size: 1rem;
+  font-size: 1.2rem;
   padding: 10px;
   background-color: #f3ba2c00;
-  /* text-shadow: -1px -1px black, 1px 1px rgb(61 61 61); */
-  color: #fff;
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  -o-border-radius: 7px;
+  text-shadow: -1px -1px black, 1px 1px rgb(61 61 61);
+  color: #f3ba2c;
   border-radius: 7px;
-  box-shadow: 0 0.2em #white;
   cursor: pointer;
-  border: none;
   padding-top: 14px;
-  border: 2px solid;
+  width: 100%;
+  box-shadow: 10px 20px 30px #070707;
+  border: 2px solid #f3ba2c;
+}
+.start-btn2:hover {
+  box-shadow: inset 1px 1px 20px #ffc83b, 1px 2px 20px #ffc637;
+  
 }
 
 hr {
